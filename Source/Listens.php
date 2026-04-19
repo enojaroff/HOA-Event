@@ -43,10 +43,7 @@ namespace Hoa\Event;
  */
 trait Listens
 {
-    /**
-     * Listener instance of type `Hoa\Event\Listener`.
-     */
-    protected $_listener = null;
+    protected ?Listener $_listener = null;
 
 
 

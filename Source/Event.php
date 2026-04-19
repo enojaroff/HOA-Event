@@ -38,7 +38,7 @@ declare(strict_types=1);
 
 namespace Hoa\Event;
 
-use Hoa\Consistency;
+use Hoa\Consistency\Consistency;
 
 /**
  * Events are asynchronous at registration, anonymous at use (until we
@@ -61,22 +61,16 @@ class Event
      * Static register of all observable objects, i.e. `Hoa\Event\Source`
      * object, i.e. object that can send event.
      */
-    private static $_register = [];
+    private static array $_register = [];
 
-    /**
-     * Collection of callables, i.e. observer objects.
-     */
-    protected $_callable      = [];
+    protected array $_callable = [];
 
 
 
     /**
      * Privatize the constructor.
      */
-    private function __construct()
-    {
-        return;
-    }
+    private function __construct() {}
 
     /**
      * Manage multiton of events, with the principle of asynchronous
@@ -98,7 +92,7 @@ class Event
      * Declares a new object in the observable collection.
      * Note: Hoa's libraries use `hoa://Event/anID` for their observable objects.
      */
-    public static function register(string $eventId, /*Source|string*/ $source): void
+    public static function register(string $eventId, Source|string $source): void
     {
         if (true === self::eventExists($eventId)) {
             throw new Exception(

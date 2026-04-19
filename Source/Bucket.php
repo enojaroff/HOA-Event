@@ -43,32 +43,24 @@ namespace Hoa\Event;
  */
 class Bucket
 {
-    /**
-     * The source object (must be of kind `Hoa\Event\Source`).
-     */
-    protected $_source = null;
+    protected ?Source $_source = null;
 
-    /**
-     * Data attached to the bucket.
-     */
-    protected $_data   = null;
+    protected mixed $_data = null;
 
 
 
     /**
      * Allocates a new bucket with various data attached to it.
      */
-    public function __construct($data = null)
+    public function __construct(mixed $data = null)
     {
         $this->setData($data);
-
-        return;
     }
 
     /**
      * Sends this object on the event channel.
      */
-    public function send(string $eventId, Source $source)
+    public function send(string $eventId, Source $source): void
     {
         return Event::notify($eventId, $source, $this);
     }
@@ -95,7 +87,7 @@ class Bucket
     /**
      * Sets new data.
      */
-    public function setData($data)
+    public function setData(mixed $data): mixed
     {
         $old         = $this->_data;
         $this->_data = $data;
@@ -103,10 +95,7 @@ class Bucket
         return $old;
     }
 
-    /**
-     * Returns the data.
-     */
-    public function getData()
+    public function getData(): mixed
     {
         return $this->_data;
     }

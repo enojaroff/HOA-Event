@@ -44,15 +44,9 @@ namespace Hoa\Event;
  */
 class Listener
 {
-    /**
-     * Source of listener (for `Hoa\Event\Bucket`).
-     */
-    protected $_source    = null;
+    protected ?Listenable $_source = null;
 
-    /**
-     * All listener IDs and associated listeners.
-     */
-    protected $_callables = [];
+    protected array $_callables = [];
 
 
 
